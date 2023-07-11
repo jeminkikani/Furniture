@@ -82,7 +82,7 @@ exports.loginUser = async (req, res) => {
 exports.getAllUser = async (req,res)=>{
     try {
         const getUser = await User.findById(User._id).select('-password');
-
+        console.log(getUser)
         res.json({getUser});
 
     } catch (error) {
