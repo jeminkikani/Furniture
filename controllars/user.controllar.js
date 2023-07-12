@@ -91,6 +91,23 @@ exports.getAllUser = async (req,res)=>{
     }
 }   
 
+exports.updateUser = async(req,res)=>{
+    try {
+        const user = await User.findById(req.user._id);
+        if(!user){
+            return res.json({msg: "user is not found...."});
+        }
+        const updateuser = await User.findByIdAndUpdate(User._id,{$set:req.body},{new:true});
+        updateuser.save();
+        res.json(updateuser);
+        
+    } catch (error) {
+        console.log(error);
+        res.status(404).json({ msg: 'server error' })
+    }
+}
+
+
 exports.updatePassword = async (req,res) =>{
     try {
         const {password , confirm_password} = req.body;
