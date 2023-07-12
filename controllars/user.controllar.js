@@ -69,7 +69,7 @@ exports.loginUser = async (req, res) => {
         if (!ismatchpassword) {
             res.json({ msg: 'password is incorrect...' })
         }
-        const isvalidToken = jwt.sign({ userId: User._id }, secrate, { expiresIn: '1d' });
+        const isvalidToken = jwt.sign({ userId: isExistUser._id }, secrate, { expiresIn: '1d' });
         res.json({ msg: 'User is login...', token: isvalidToken });
 
     } catch (error) {
@@ -81,8 +81,8 @@ exports.loginUser = async (req, res) => {
 
 exports.getAllUser = async (req,res)=>{
     try {
-        const getUser = await User.findById(User._id).select('-password');
-        console.log(getUser)
+        const getUser = await User.findById(req.user._id).select('-password');
+
         res.json({getUser});
 
     } catch (error) {
@@ -97,7 +97,7 @@ exports.updateUser = async(req,res)=>{
         if(!user){
             return res.json({msg: "user is not found...."});
         }
-        const updateuser = await User.findByIdAndUpdate(User._id,{$set:req.body},{new:true});
+        const updateuser = await User.findByIdAndUpdate(user._id,{$set:req.body},{new:true});
         updateuser.save();
         res.json(updateuser);
         
@@ -112,18 +112,21 @@ exports.updatePassword = async (req,res) =>{
     try {
         const {password , confirm_password} = req.body;
         if(password === confirm_password){
-        const  user = await User.findById(req.User._id);
+        const user = await User.findById(req.user._id);
         if(!user)
         {
             res.json({msg:"user is not Found"})
         }
-    }
-
+    
     const salt = await bcrypt.genSalt(10);
     const hashpassword = await bcrypt.hash(password , salt);
 
-    await User.findByIdAndUpdate(User._id , {$set:{password:hashpassword}});
+    await User.findByIdAndUpdate(user._id , {$set:{password:hashpassword}});
     res.json({msg: "password is updated...."})
+        }
+        else{
+            return res.status(400).json({msg: 'password and confirm password is not match..'})
+        }
         
     } catch (error) {
         console.log(error);

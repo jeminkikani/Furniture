@@ -8,7 +8,7 @@ const isVerify = async (req,res,next)=>{
     const token = auth.split(" ")[1];
     const {userId} = jwt.verify(token , secrate);
 
-    req.User = await User.findById(userId);
+    req.user = await User.findById(userId);
     next();
 }
 
