@@ -4,9 +4,10 @@ const app = express();
 const mongoose = require('mongoose');
 const port = process.env.PORT;
 const mongoUrl = process.env.MONGODB_URL;
-
+const morgan = require('morgan')
 // middalware
 app.use(express.json());
+app.use(morgan('dev'));
 
 
 // userRoutes
