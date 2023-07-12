@@ -133,3 +133,14 @@ exports.updatePassword = async (req,res) =>{
         res.json({ msg: 'server error' })
     }
 }
+
+exports.deleteUser = async (req,res)=>{
+    try {
+        const user = user.findById({user:user._id})
+        
+        
+    } catch (error) {
+        console.log(error);
+        res.json({msg: 'server error'})
+    }
+}

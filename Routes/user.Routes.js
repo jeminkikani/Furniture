@@ -1,5 +1,5 @@
 const express = require('express');
-const {welcomeUser ,createUser ,loginUser ,getAllUser, updatePassword, updateUser} = require('../controllars/user.controllar');
+const {welcomeUser ,createUser ,loginUser ,getAllUser, updatePassword, updateUser, deleteUser} = require('../controllars/user.controllar');
 const isVerify = require('../middalware/auth');
 const UserRoutes = express.Router();
 
@@ -14,5 +14,7 @@ UserRoutes.get('/get-user', isVerify ,  getAllUser);
 UserRoutes.put('/update-user', isVerify ,  updateUser);
 
 UserRoutes.put('/update-password', isVerify ,  updatePassword);
+
+UserRoutes.delete('/delete-user', isVerify ,  deleteUser);
 
 module.exports = UserRoutes;
