@@ -18,6 +18,10 @@ app.use('/api/user' , userRoutes);
 const productRoutes = require('./Routes/product.Routes');
 app.use('/api/product', productRoutes);
 
+// productRoutes
+const cartRoutes = require('./Routes/cart.Routes');
+app.use('/api/cart', cartRoutes);
+
 // server
 app.listen(port , ()=>{
     console.log(`server is started ${port}`);
