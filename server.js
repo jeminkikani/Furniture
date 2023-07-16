@@ -18,9 +18,13 @@ app.use('/api/user' , userRoutes);
 const productRoutes = require('./Routes/product.Routes');
 app.use('/api/product', productRoutes);
 
-// productRoutes
+// cartRoutes
 const cartRoutes = require('./Routes/cart.Routes');
 app.use('/api/cart', cartRoutes);
+
+// ordarRoutes
+const ordarRoutes = require('./Routes/ordar.Routes');
+app.use('/api/ordar' , ordarRoutes);
 
 // server
 app.listen(port , ()=>{

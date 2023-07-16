@@ -69,7 +69,7 @@ exports.loginUser = async (req, res) => {
         if (!ismatchpassword) {
             res.json({ msg: 'password is incorrect...' })
         }
-        const isvalidToken = jwt.sign({ userId: isExistUser._id }, secrate, { expiresIn: '1d' });
+        const isvalidToken = jwt.sign({ userId: isExistUser._id }, secrate, { expiresIn: '30d' });
         res.json({ msg: 'User is login...', token: isvalidToken });
 
     } catch (error) {
