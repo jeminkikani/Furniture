@@ -30,6 +30,10 @@ app.use('/api/ordar' , ordarRoutes);
 const rateRoutes = require('./Routes/rate.Routes');
 app.use('/api/rate', rateRoutes)
 
+// FavouriteRoutes
+const FavouriteRoutes = require('./Routes/favourite.Routes');
+app.use('/api/fav', FavouriteRoutes)
+
 // server
 app.listen(port , ()=>{
     console.log(`server is started ${port}`);
