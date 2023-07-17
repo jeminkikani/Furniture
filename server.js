@@ -26,6 +26,10 @@ app.use('/api/cart', cartRoutes);
 const ordarRoutes = require('./Routes/ordar.Routes');
 app.use('/api/ordar' , ordarRoutes);
 
+// rateRoutes
+const rateRoutes = require('./Routes/rate.Routes');
+app.use('/api/rate', rateRoutes)
+
 // server
 app.listen(port , ()=>{
     console.log(`server is started ${port}`);
