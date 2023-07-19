@@ -6,7 +6,7 @@ const secrate = process.env.SECRET_KEY;
 
 exports.welcomeUser = async (req, res) => {
     try {
-        res.json({ msg: 'WelCome To Furniture App' });
+        res.send({ msg: 'WelCome To Furniture App' });
     } catch (error) {
         console.log(error);
         res.json({ msg: 'server error' })
