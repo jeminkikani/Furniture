@@ -7,4 +7,4 @@ ordarRoutes.post('/add-ordar', isVerify , addordar);
 
 ordarRoutes.get('/get-ordar', isVerify , getordar )
 
-module.exports = 
+module.exports = ordarRoutes;
